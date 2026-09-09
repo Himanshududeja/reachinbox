@@ -16,7 +16,7 @@
   "dependencies": {
     "@bull-board/api": "^9.9.0",
     "@bull-board/express": "^9.9.0",
-    "@elastic/elasticsearch": "^7.17.13",
+    "@elastic/elasticsearch": "8.19.0",
     "bullmq": "^6.3.4",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",

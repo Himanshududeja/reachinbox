@@ -24,7 +24,7 @@ export const createEmailIndex = async () => {
     index: EMAIL_INDEX
   });
 
-  if (exists.body) {
+  if (exists) {
     return;
   }
 
@@ -124,7 +124,7 @@ export const searchEmails = async ({
     }
   });
 
-  const hits: any = response.body.hits;
+  const hits: any = response.hits;
 
   return {
     results: hits.hits.map((hit: any) => hit._source),
