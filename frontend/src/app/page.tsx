@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 type Email = {
   id: number;
   recipient: string;
@@ -37,7 +39,7 @@ function Login({
           className="google-button"
           onClick={() => {
             window.location.href =
-              "http://localhost:5001/api/auth/google";
+              `${API_URL}/api/auth/google`;
           }}
         >
           Continue with Google
@@ -98,8 +100,8 @@ function Dashboard({
       try {
         const endpoint =
           activeTab === "scheduled"
-            ? "http://localhost:5001/api/campaigns/scheduled"
-            : "http://localhost:5001/api/campaigns/sent";
+            ? `${API_URL}/api/campaigns/scheduled`
+            : `${API_URL}/api/campaigns/sent`;
 
         const response = await fetch(endpoint, {
           credentials: "include"
@@ -133,8 +135,8 @@ function Dashboard({
     if (!search.trim()) {
       const endpoint =
         activeTab === "scheduled"
-          ? "http://localhost:5001/api/campaigns/scheduled"
-          : "http://localhost:5001/api/campaigns/sent";
+          ? `${API_URL}/api/campaigns/scheduled`
+          : `${API_URL}/api/campaigns/sent`;
 
       try {
         const response = await fetch(endpoint, {
@@ -166,9 +168,7 @@ function Dashboard({
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/emails/search?q=${encodeURIComponent(
-          search
-        )}`,
+        `${API_URL}/api/emails/search?q=${encodeURIComponent(search)}`,
         {
           credentials: "include"
         }
@@ -274,7 +274,7 @@ function Dashboard({
           <button
             onClick={() => {
               window.location.href =
-                "http://localhost:5001/api/slack/oauth/start";
+                `${API_URL}/api/slack/oauth/start`;
             }}
           >
             Connect Slack
@@ -421,7 +421,7 @@ function Compose({
       setMessage("");
 
       const campaignResponse = await fetch(
-        "http://localhost:5001/api/campaigns",
+        `${API_URL}/api/campaigns`,
         {
           method: "POST",
           credentials: "include",
@@ -451,7 +451,7 @@ function Compose({
 
       for (const recipient of recipients) {
         const response = await fetch(
-          `http://localhost:5001/api/campaigns/${campaignId}/emails`,
+          `${API_URL}/api/campaigns/${campaignId}/emails`,
           {
             method: "POST",
             credentials: "include",
@@ -794,7 +794,7 @@ export default function Page() {
     }
 
     fetch(
-      "http://localhost:5001/api/auth/me",
+      `${API_URL}/api/auth/me`,
       {
         credentials: "include"
       }
